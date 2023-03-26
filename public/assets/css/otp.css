@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Corinthia:wght@400;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+.form-section {
+  text-align: center;
+  padding: 25px 0;
+  height: 79vh;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #c4c3ca;
+  background: linear-gradient(to bottom right, #9718e5,#a25fcb,white);
+  background-size: cover;
+}
+
+.form-section .container {
+  position: relative;
+  height: 100%;
+}
+
+.form-row {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg")no-repeat;
+  background-color: #fafafad6;
+  background-position: bottom center;
+  background-size: 300%;
+  border-radius: 6px;
+}
+
+.fa-solid.fa-shield-halved {
+  font-size: 75px;
+  margin-top: 25px;
+  color: #9718e5;
+}
+
+.form-row h4 {
+  font-size: 30px;
+  margin: 10px 0;
+  color: crimson;
+}
+.form-row p{
+  margin: 5px 0;
+  color: #0d3056;
+}
+
+.opt_holder {
+  display: flex;
+  margin: 0 70px;
+}
+
+.cols {
+  padding: 0 10px;
+}
+
+.inp {
+  background: linear-gradient(to right,#9718e5,white);
+  padding: 10px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  display: flex;
+}
+
+.inp_style:focus,
+.inp_style:focus {
+  box-shadow: 0 4px 8px 0 rgba(21, 21, 21, .2);
+}
+
+.inp i {
+  padding: 5px;
+}
+
+input {
+  background: none;
+  border: none;
+  margin: 0 5px;
+  font-size: 15px;
+  font-weight: 400;
+  color: crimson;
+  width: 90%;
+  text-align: center;
+}
+
+input::placeholder {
+  color: #ffeaa7;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 200ms linear;
+  opacity: 0.7;
+}
+
+input:focus {
+  outline: none;
+  transition: all 600ms linear ease;
+
+}
+
+input:focus::placeholder {
+  opacity: 0;
+  /* transition: all 600ms linear ease; */
+}
+
+/* button section */
+.submit {
+  display: inline-block;
+}
+
+button {
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+  padding: 15px 35px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  background-color: #c4c3ca;
+  color: #9718e5;
+  border: none;
+  margin: 15px 0;
+  box-shadow: 0 8px 24px 0 rgba(255, 235, 167, .2);
+}
+
+button:hover {
+  background-color: #9718e5;
+  color: #ffeaa7;
+}
+
+/* error section  and password section*/
+.error_class{
+  text-align: center;
+}
+.error_class span{
+  color: crimson;
+}
+#eye{
+  color: #4C489D;
+}
