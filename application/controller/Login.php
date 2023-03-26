@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 // Including the database connection.
 require "application/model/db_conn.php";
@@ -32,20 +33,22 @@ class Login {
 // Creating an object of the Email class.
 $loginValidation = new Login ;
 $loginValidation->emailSyntax($email);
-// 
+
+// Creating an object for the LoginDatabaseCheck class and calling its method to validate the email and password entered by user.
 $dc = new LoginDatabaseCheck;
 $feedback = $dc->matchDb($email,$pass,$con);
 
+// Response for erroneous input.
 if($feedback[0]==FALSE){
   $_SESSION["msg"] = $feedback[1];
   header("location: login");
 }
+// Response for right input
 else{
   $_SESSION['U_name'] = $feedback[1];
   $_SESSION["email"] = $email;
   header("location: home");
 }
-
 $con->close();
 
 ?>

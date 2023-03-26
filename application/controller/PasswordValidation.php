@@ -1,5 +1,10 @@
 <?php
+
+/**
+ * This class is used for validating the password, it has a method that checks the strength of the password.  
+ */
 class PasswordValidation {
+
  /**
   * This methods checks if the length of the password isn't less than 6.
   * It checks that at least 1 uppercase,1lowercase,1 digit and a specialcharacter is present or not.
@@ -33,6 +38,7 @@ class PasswordValidation {
      
    return $error;
  }
+ 
 }
 
 ?>

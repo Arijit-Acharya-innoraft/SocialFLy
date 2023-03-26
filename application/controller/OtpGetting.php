@@ -1,13 +1,24 @@
 <?php
 session_start();
+
+// Including the dependencies.
 require_once "application/model/Utilities.php";
 require_once "application/model/db_conn.php";
+
+/**
+ * This class is used for storing the otp from the user and matching it.
+ * It has got a constructor to store the user entered otp.
+ * A method named as checkOtp for matching the otp.
+ */
 class OtpGetting {
 
+  /**
+   * This is a class variable, will be used for storing the user entered OTP.
+   */
   public $u_otp;
 
   /**
-   * This funnction concatinates the user entered opt(in parts) into the original otp.
+   * The constructor concatinates the user entered opt(in parts) into the original otp.
    */
   function __construct()
   {
@@ -39,4 +50,5 @@ class OtpGetting {
 // Creating an object of GettingOTP.
 $otpClass = new OtpGetting;
 $otpClass->checkOtp($con);
+
 ?>

@@ -1,10 +1,17 @@
 <?php
 /**
- * 
+ * This class contains multiple methods serving various purpose.
  */
 class Utilities {
+
   /**
-   * 
+   * This method is used for updating the token in the database.
+   * @param $con
+   * An object of fthe mysqli class.
+   * @param $token
+   * Contains the token to be stored in the database.
+   * @param $email
+   * The email of the user.
    */
   function updateToken($con,$token,$email){
     $qry = "UPDATE Users SET token = '" . $token . "' WHERE email = '" . $email . "';";
@@ -12,7 +19,13 @@ class Utilities {
   }
 
   /**
-   * 
+   * This method is used for checking the previous user.
+   * @param $con
+   *  An object of fthe mysqli class.
+   * @param $email
+   *  The email of the user.
+   * @return $data
+   *  An associative array 
    */
   function checkPrevUser($con,$email){
     $qry = "SELECT email FROM Users WHERE email = '" . $email . "';";
@@ -22,7 +35,15 @@ class Utilities {
   }
 
   /**
-   * 
+   * This method is used for storing the data in the database.
+   * @param $con
+   * An object of fthe mysqli class.
+   * @param $email
+   * The email of the user.
+   * @param $u_name
+   *  This contains the user name.
+   * @param $password
+   *  The password of the user.
    */
   function storeData($con,$email,$u_name,$password) {
     $qry = "INSERT INTO Users (email,u_name,user_password) VALUES ('" . $email . "','" . $u_name . "','" . $password ."');";
@@ -30,7 +51,17 @@ class Utilities {
   }
 
   /**
-   * 
+   * This method stores the information of the posts in posts table.
+   * @param $con
+   * An object of fthe mysqli class.
+   * @param $email
+   * The email of the user.
+   * @param $date
+   *  The date and time of the post.
+   * @param $txt
+   * It stores the text entered in the post.
+   * @param $img
+   *  It stores the image that the  user has entered.
    */
   function storePost($con,$email,$date,$txt,$img) {
     if(strlen($txt)>0||strlen($img)>21){
@@ -40,7 +71,15 @@ class Utilities {
     }
   }
 
-
+  /**
+   * This fuction is used to fetch the post data to view the post.
+   * @param $con
+   *  An object of the mysqli class.
+   * @param $limit
+   *  To store the no of posts to see at once.
+   * @return $result
+   *  An associative array containing the details of the posts. 
+   */
   function viewPost($con,$limit){
     $qry = "SELECT create_time,posted_text,posted_image,u_name,p_photo,post_id FROM Users as Users JOIN posts as Posts ON Posts.email = Users.email ORDER BY Posts.create_time DESC LIMIT ". $limit . ";" ;
     $data = $con->query($qry);
@@ -65,7 +104,13 @@ class Utilities {
   }
 
   /**
-   * 
+   * This method is used for arranging the data in ascending format.
+   * @param $con
+   *  An object of fthe mysqli class.
+   * @param $email
+   *  The email of the user.
+   * @return $result["p_photo"]
+   *  It returns the phofile photo of the user stored in the database.
    */
   function toAscending($con,$email) {
     $qry = "SELECT * FROM posts WHERE email = '" . $email . "' ORDER BY create_time ;";
@@ -75,7 +120,13 @@ class Utilities {
   }
   
   /**
-   * 
+   * This method is used for arranging the data in descending format.
+   * @param $con
+   *  An object of fthe mysqli class.
+   * @param $email
+   *  The email of the user.
+   * @return $result["p_photo"]
+   *  It returns the phofile photo of the user stored in the database.
    */
   function toDescending($con,$email) {
     $qry = "SELECT * FROM posts  WHERE email = '" . $email . "' ORDER BY create_time DESC";

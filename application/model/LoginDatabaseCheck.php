@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This class is used to validate the user entered email and password with that of database.
  * 
@@ -35,4 +36,5 @@ class LoginDatabaseCheck  {
   }
 
 }
+
 ?>

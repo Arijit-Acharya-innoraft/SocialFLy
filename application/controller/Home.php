@@ -55,16 +55,30 @@ class Home {
   }
 }
 
+// Creating object of the Home class nd calling its method.
 $home = new Home;
 $home->toDatabase($con,$_SESSION["email"]);
 
+/**
+ * This class is used for creting an object of the Utilities class and calling its method for viewing the posts.
+ */
 class ShowPosts {
 
+  /**
+   * This method creates another object and calls its method for viewing the posts.
+   * @param $con
+   * It is an object of mysqli class.
+   * @param $limit
+   * It specifies the limit for the no of posts to be shown on each ajax call.
+   * @return $store
+   * It is an associative array containing the various posts and details for each posts.
+   */
   function fetchDatabase($con,$limit) {
     $uti = new Utilities;
     $store = $uti->viewPost($con,$limit);
     return $store;
   }
+  
 }
 
 ?>
