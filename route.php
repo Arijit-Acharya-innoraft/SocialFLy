@@ -67,7 +67,7 @@ class Router {
    */
   function abort() {
     $error_code = http_response_code();
-    echo "$error_code";
+    echo "<h1>404 Page  not found.</h1>";
   }
 
 }

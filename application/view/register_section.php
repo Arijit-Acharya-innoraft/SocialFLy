@@ -12,7 +12,7 @@
             <input type='password' name="password" id="password" placeholder='Password' class='input-line full-width' autocomplete="off" onblur="validatePassword()" required></input>
             <button type="submit" id='btn' class='ghost-round full-width'>Create Account</button>
           </form>
-          <div class='spacing'>or continue with <a href="" class="linkedin-tag"><span class='highlight'>LinkedIn</span></a></div>
+          <div class='spacing'>or continue with <a href="ssologin" class="linkedin-tag"><span class='highlight'>LinkedIn</span></a></div>
           <div class="back">
             <a href="login">
               <i class="fa-solid fa-arrow-left fa-flip-vertical" style="color: #fffafe;"></i>

@@ -101,3 +101,5 @@ class ConditionChecking
 //Creating an object and calling its  method.
 $cc = new ConditionChecking;
 $cc->checkCondition($name_error, $pass_error, $con);
+
+?>

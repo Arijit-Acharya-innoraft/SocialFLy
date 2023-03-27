@@ -1,17 +1,21 @@
 <?php
+// Calling the dependencies.
+require_once "application/model/db_conn.php";
+require_once "application/model/ForgotEmailValidate.php"; 
+require_once "application/model/Utilities.php";
 require_once "vendor/autoload.php";
 /**
- * 
+ * This class is used for the linked in sign in controller.
  */
 class Configuration {
 
   /**
-   * 
+   * This variable is used as an associative array for storing the configuration.
    */
   public $config;
 
   /**
-   * 
+   * The constructor stores the necessary information about the user id, secret key, the call back address and the scope.
    */
   public function  __construct() {
     $this->config = [
@@ -25,7 +29,8 @@ class Configuration {
   }
   
   /**
-   * 
+   * This method is used for creating the object of the Hybridauth\Provider\LinkedIn class.
+   * The  config
    */
   public function configLog() {
     $adapter = new Hybridauth\Provider\LinkedIn( $this->config );
@@ -35,53 +40,52 @@ class Configuration {
 }
 
 /**
- * 
+ * This class  the object created ago to fetch the required values.
  */
 class Login {
 
+  /**
+   * This method is used for getting the user information.
+   * @param $adapter
+   *  It is the object of the Hybridauth\Provider\LinkedIn class.
+   */
   function userLogin($adapter){
     try {
       $adapter->authenticate();
       $userProfile = $adapter->getUserProfile();
-      // $od = new ObjectDecode ;
-      // $od->getValues($userProfile); 
-      echo "<pre>"; print_r($userProfile) ; echo "</pre>";        
-      // echo '<a href="logout">Logout</a>';
-      return $userProfile;
+      $userName = $userProfile->displayName;
+      $userEmail =  $userProfile->email;
+      $userImage = $userProfile->photoURL;
+
+      return array($userEmail,$userImage,$userName);
     }
     catch( Exception $e ){
       echo $e->getMessage() ;
     }
   }
+
 }
 
+// Creating an object for the Configuration class and calling its method.
 $conf = new Configuration;
 $adapter=$conf->configLog();
+
+// Creating an object for the login class and calling its method.
 $lgin = new Login;
-$lgin->userLogin($adapter);
-$config = new Configuration;
-$adapter =$config->configLog();
+$user_info = $lgin->userLogin($adapter);
 
-
-
-
-try {
-  if ($adapter->isConnected()) {
-    echo "Hi";
-      $adapter->disconnect();
-      // clearstatcache();
-      // echo (isset($_SESSION));
-      echo 'Logged out the user';
-      echo '<p><a href="login">Login</a></p>';
-
-  }
+// Creating an object of ForgotEmailValidate class and calling its method.
+$fe = new ForgotEmailValidate;
+$response = $fe->checkEmail($con,$user_info[0]);
+if($response == ""){
+  $_SESSION['U_name'] = $user_info[2];
+  $_SESSION["email"] = $user_info[0];
+  header("location: home");
 }
-catch( Exception $e ){
-  echo $e->getMessage() ;
+else{
+  $uti = new Utilities;
+  $uti->storeData($con,$user_info[0],$user_info[2],"defaultPassword");
+  header("location: home");
 }
-
-
-
-  // header("location: ssoinfo");
 
 ?>

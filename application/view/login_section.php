@@ -29,7 +29,7 @@
               <div class="social-login">
                 <h3>log in via</h3>
                 <div class="social-icons">
-                  <a href="#" class="social-login__icon fab fa-linkedin"></a>
+                  <a href="ssologin" class="social-login__icon fab fa-linkedin"></a>
                 </div>
               </div>
             </div>
