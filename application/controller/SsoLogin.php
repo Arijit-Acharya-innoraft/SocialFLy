@@ -73,7 +73,6 @@ $adapter=$conf->configLog();
 // Creating an object for the login class and calling its method.
 $lgin = new Login;
 $user_info = $lgin->userLogin($adapter);
-
 // Creating an object of ForgotEmailValidate class and calling its method.
 $fe = new ForgotEmailValidate;
 $response = $fe->checkEmail($con,$user_info[0]);
@@ -85,6 +84,7 @@ if($response == ""){
 else{
   $uti = new Utilities;
   $uti->storeData($con,$user_info[0],$user_info[2],"defaultPassword");
+  $uti->storeProfile($con,$user_info[0],$user_info[1]);
   header("location: home");
 }
 

@@ -1,3 +1,5 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 <?php
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
@@ -8,7 +10,7 @@ $sp = new ShowPosts;
 $store = $sp->fetchDatabase($con, $_POST["limit"],$_POST["sort"]);
 
 foreach ($store as $st) { ?>
-  <div class="post" id="like-<?php echo $st["post_id"]; ?>">
+  <div class="post" id = "<?php echo $st["email"];?>">
     <div class="user-details">
       <div class="user-cols image-col">
         <div class="user-row">
@@ -35,7 +37,7 @@ foreach ($store as $st) { ?>
       <?php } ?>
     </div>
     <div class="reaction">
-      <div class="like">
+      <div class="like" id="like-<?php echo $st["post_id"]; ?>">
         <i id="like-it" class="fa-regular fa-thumbs-up"></i><span>25</span>
       </div>
       <div class="comment">
@@ -48,4 +50,6 @@ foreach ($store as $st) { ?>
   </div>
 <?php
 }
+
 ?>
+<script src="public/assets/js/like.js"></script>

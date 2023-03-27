@@ -1,7 +1,9 @@
-
-
 <?php
 session_start();
+if (!isset($_SESSION['U_name'])) {
+  header("location:login");
+}
+
 require_once "application/controller/FetchProfile.php";
 require_once "application/model/db_conn.php";
 
@@ -101,4 +103,5 @@ require_once "application/view/html_head.php";
 <script src="public/assets/js/ajax.js"></script>
 <?php
 require_once "application/view/html_tail.php";
+
 ?>
