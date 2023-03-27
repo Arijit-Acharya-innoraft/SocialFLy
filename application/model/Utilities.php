@@ -77,11 +77,13 @@ class Utilities {
    *  An object of the mysqli class.
    * @param $limit
    *  To store the no of posts to see at once.
+   * @param $sort
+   *  It contains the variable ASC or DESC or the sorting purpose.
    * @return $result
    *  An associative array containing the details of the posts. 
    */
-  function viewPost($con,$limit){
-    $qry = "SELECT create_time,posted_text,posted_image,u_name,p_photo,post_id FROM Users as Users JOIN posts as Posts ON Posts.email = Users.email ORDER BY Posts.create_time DESC LIMIT ". $limit . ";" ;
+  function viewPost($con,$limit,$sort){
+    $qry = "SELECT create_time,posted_text,posted_image,u_name,p_photo,post_id FROM Users as Users JOIN posts as Posts ON Posts.email = Users.email ORDER BY Posts.create_time ". $sort ." LIMIT ". $limit . ";" ;
     $data = $con->query($qry);
     $result = $data->fetch_all(MYSQLI_ASSOC);
     return $result;

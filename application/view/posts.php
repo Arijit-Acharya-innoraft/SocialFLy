@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once "application/controller/Home.php";
 require "application/model/db_conn.php";
 $sp = new ShowPosts;
-$store = $sp->fetchDatabase($con, $_POST["limit"]);
+$store = $sp->fetchDatabase($con, $_POST["limit"],$_POST["sort"]);
 
 foreach ($store as $st) { ?>
   <div class="post" id="like-<?php echo $st["post_id"]; ?>">

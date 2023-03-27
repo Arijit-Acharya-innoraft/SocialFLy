@@ -53,7 +53,9 @@ nav ul li a{
   text-decoration: none;
 }
 
-nav ul li #search_btn{
+nav ul li #search_btn,
+nav ul li #sort_btn{
+
   border: none;
   outline: none;
   background: rgba(0, 0, 0, 0.068);
@@ -81,7 +83,6 @@ nav ul li a{
   transition: .5s;
 
 }
-nav ul li #btn_plus,
 nav ul li #btn_profile{
   height: 40px;
   width: 40px;

@@ -33,7 +33,7 @@ class Home {
    */
   function inputStore() {
     if(isset($_POST["textarea"])||isset($_FILES['images']['name'])){
-      $text = $_POST["textarea"];
+      $text= htmlspecialchars($_POST['textarea'],ENT_QUOTES);
       $image_name = $_FILES['images']['name'];
       $image_temp = $_FILES['images']['tmp_name'];
       $locationImg = "public/assets/images/" . $image_name;
@@ -73,9 +73,9 @@ class ShowPosts {
    * @return $store
    * It is an associative array containing the various posts and details for each posts.
    */
-  function fetchDatabase($con,$limit) {
+  function fetchDatabase($con,$limit,$sort) {
     $uti = new Utilities;
-    $store = $uti->viewPost($con,$limit);
+    $store = $uti->viewPost($con,$limit,$sort);
     return $store;
   }
   
