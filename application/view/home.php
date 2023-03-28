@@ -99,7 +99,6 @@ require_once "application/view/html_head.php";
 </div>
 <script src="public/assets/js/landing.js"></script>
 <script src="public/assets/js/home.js"></script>
-<script src="public/assets/js/posts.js"></script>
 <script src="public/assets/js/ajax.js"></script>
 <?php
 require_once "application/view/html_tail.php";

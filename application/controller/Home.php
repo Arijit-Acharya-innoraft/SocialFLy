@@ -32,6 +32,9 @@ class Home {
    * It returns the stored user entered text and image location. 
    */
   function inputStore() {
+    // if(((isset($_POST["textarea"])) && $_POST["textarea"]!="") &&((isset($_FILES["images"])) && $_FILES["images"]!="")){
+    //   header("location:home");
+    // }
     if(isset($_POST["textarea"])||isset($_FILES['images']['name'])){
       $text= htmlspecialchars($_POST['textarea'],ENT_QUOTES);
       $image_name = $_FILES['images']['name'];
@@ -55,10 +58,15 @@ class Home {
   }
 }
 
+ 
+if(((isset($_POST["textarea"])) && $_POST["textarea"]=="") &&((isset($_FILES["images"]['name'])) && $_FILES["images"]['name']=="")){
+  header("location:home");
+}
+else{
 // Creating object of the Home class nd calling its method.
 $home = new Home;
 $home->toDatabase($con,$_SESSION["email"]);
-
+}
 /**
  * This class is used for creting an object of the Utilities class and calling its method for viewing the posts.
  */

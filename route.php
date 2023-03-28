@@ -44,7 +44,8 @@ class Router {
       "/homebackend" => "application/controller/Home.php",
       "/posts" => "application/view/posts.php",
       "/postsbackend" => "application/controller/Post.php",
-      "/fetchprofile" => "application/controller/FetchProfile.php"
+      "/fetchprofile" => "application/controller/FetchProfile.php",
+      "/likeController" => "application/controller/LikeController.php"
     ];
   }
 

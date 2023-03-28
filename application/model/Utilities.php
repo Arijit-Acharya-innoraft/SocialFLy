@@ -119,6 +119,68 @@ class Utilities {
     $con->query($qry);
   }
 
+ /**
+   * This function is used to check if a user has hit like on that particular post or not.
+   * @param con 
+   *  It is used to store the object of the mysqli class.
+   * @param user_id
+   *  It is used to store the email address of the logged in user who likes a post.
+   * @param like_id
+   *  It is used to store the id of the post liked by a user.
+   * @return $result->num_rows
+   *  It returns 0 for no rows found and 1 for one row found.  
+   */
+  function likeCheck($con,$user_id,$like_id) {
+    $qry = "SELECT create_time  FROM post_like WHERE like_id = '" . $like_id . "' AND email = '" . $user_id . "';";
+    $result = $con->query($qry);
+    return $result->num_rows;
+  }
+
+  /**
+   * This function is used to store the like id and user id in post_like table.
+   * @param con 
+   *  It is used to store the object of the mysqli class.
+   * @param user_id
+   *  It is used to store the email address of the logged in user who likes a post.
+   * @param like_id
+   *  It is used to store the id of the post liked by a user.
+   * @param create_time 
+   *  It is used for storin the like time of the user.
+   */
+  function likeStore ($con,$user_id,$create_time,$like_id) {
+    $qry = "INSERT INTO post_like VALUES('" . $like_id . "','" .$create_time . "','" . $user_id ."');"  ;
+    $con->query($qry);
+  }
+
+   /**
+   * This function is used to remove the like id and user id in post_like table.
+   * @param con 
+   *  It is used to store the object of the mysqli class.
+   * @param user_id
+   *  It is used to store the email address of the logged in user who likes a post.
+   * @param like_id
+   *  It is used to store the id of the post liked by a user.
+   */
+  function likeDelete ($con,$user_id,$like_id) {
+    $qry = "DELETE FROM post_like WHERE like_id ='" . $like_id ."' AND email = '" . $user_id . "';";
+    $con->query($qry);
+  }
+
+  /**
+   * This function is used to remove the like id and user id in post_like table.
+   * @param con 
+   *  It is used to store the object of the mysqli class.
+   * @param like_id
+   *  It is used to store the id of the post liked by a user.
+   * @return $result->num_rows;
+   *   It returns the number of likes in that post.
+   */
+  function countLikes($con,$like_id) {
+    $qry = "SELECT email FROM post_like WHERE like_id ='" . $like_id . "';";
+    $result = $con->query($qry);
+    return $result->num_rows;
+  }
+
 }
 
 ?>

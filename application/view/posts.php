@@ -8,8 +8,8 @@ require_once "application/controller/Home.php";
 require "application/model/db_conn.php";
 $sp = new ShowPosts;
 $store = $sp->fetchDatabase($con, $_POST["limit"],$_POST["sort"]);
-
 foreach ($store as $st) { ?>
+<div class="User-id" id = "<?php echo $_SESSION["email"];?>"></div>
   <div class="post" id = "<?php echo $st["email"];?>">
     <div class="user-details">
       <div class="user-cols image-col">
@@ -38,7 +38,9 @@ foreach ($store as $st) { ?>
     </div>
     <div class="reaction">
       <div class="like" id="like-<?php echo $st["post_id"]; ?>">
-        <i id="like-it" class="fa-regular fa-thumbs-up"></i><span>25</span>
+        <i id="like-it" class="fa-regular fa-thumbs-up"></i>
+        <span id = "like-count">
+        </span>
       </div>
       <div class="comment">
         <i class="fa-regular fa-comments"></i><span>1</span>
