@@ -3,9 +3,14 @@ $(document).ready(function() {
     var likeId = $(this).attr("id");
     // var postId = $(".post").attr("id");
     var userId =$(".User-id").attr("id");
+
     var likeAddress = "#".concat(likeId," ","#like-count");
-  $(likeAddress).load("likeController",{Like_Id:likeId,User_Id:userId},function(responseTxt, statusTxt, xhr){
-  });
+    var likeIconAddress = "#".concat(likeId," ","#like-it")
+    // var nolike ="#".concat(likeId," .fa-regular");
+    // $(nolike).toggleClass("fa-solid");
+    $(likeAddress).load("likeController",{Like_Id:likeId,User_Id:userId},function(responseTxt, statusTxt, xhr){
+    });
   });
 
 });
+

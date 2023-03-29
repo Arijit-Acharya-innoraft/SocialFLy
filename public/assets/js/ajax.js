@@ -13,10 +13,9 @@ $(document).ready(function(){
   // $(".post-section").load("posts",{limit: a,sort:filter},function(responseTxt, statusTxt, xhr){
   // });
   $(".load-more button").click(function(){
-    a+=3;
+    a+=5;
     $(".post-section").load("posts",{limit:a,sort:filter},function(responseTxt, statusTxt, xhr){
       
     });
   });
-
 });

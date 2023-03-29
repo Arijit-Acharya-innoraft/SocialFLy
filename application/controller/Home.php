@@ -9,6 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once "application/model/DateGenerator.php";
 require_once "application/model/db_conn.php";
 require_once "application/model/Utilities.php";
+require_once  "application/model/check_like.php";
 
 /**
  * It basically stores the User entered data into the database.
@@ -85,6 +86,16 @@ class ShowPosts {
     $uti = new Utilities;
     $store = $uti->viewPost($con,$limit,$sort);
     return $store;
+  }
+
+  function like($con,$post_id,$like_id,$email) {
+    $lc= new LikeCount;
+    $like_no = $lc->counting_like($con,$like_id);
+    $lc->updateLikeCount($con,$like_no,$post_id);
+    $like_count = $lc->getTotalLikes($con,$post_id);
+    // $check = $lc->userLiked($con,$email,$like_id);
+    // return array($like_count,$check);
+    return $like_count;
   }
   
 }
