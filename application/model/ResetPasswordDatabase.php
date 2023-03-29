@@ -9,10 +9,12 @@ class ResetPasswordDatabase {
   /**
    * This method checks for the existing password of the user.
    * It checcks so tht the existing password i snot the new password.
+   * 
    * @param $con
    * It is an object of the mysqli class.
    * @param $email
    * It is the user entered email. 
+   * 
    * @return $data 
    * Returns an associative array.
    */

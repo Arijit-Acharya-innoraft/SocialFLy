@@ -3,7 +3,7 @@
     <nav>
       <ul>
         <div class="logo">
-          <a href="http://test.com"><i class="fa-brands fa-twitter"></i>SocialFLy</a>
+          <a href="http://test.com/home"><i class="fa-brands fa-twitter"></i>SocialFLy</a>
         </div>
         <li id="space1"></li>
         <li> <a class="tooltip" data-tooltip="Home" id="home" href="home"> <i class="fas fa-home"></i> </a></li>

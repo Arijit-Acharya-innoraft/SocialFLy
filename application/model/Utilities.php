@@ -73,6 +73,7 @@ class Utilities {
 
   /**
    * This fuction is used to fetch the post data to view the post.
+   * 
    * @param $con
    *  An object of the mysqli class.
    * @param $limit
@@ -179,6 +180,23 @@ class Utilities {
     $qry = "SELECT email FROM post_like WHERE like_id ='" . $like_id . "';";
     $result = $con->query($qry);
     return $result->num_rows;
+  }
+
+ 
+ 
+  /**
+   * @param mixed $con
+   *  It stores   
+   * @param mixed $post_id
+   * @param mixed $email
+   * @param mixed $create_time
+   * @param mixed $comment
+   * 
+   * @return [type]
+   */
+  function storeComment($con,$post_id,$email,$create_time,$comment){
+    $qry = "INSERT INTO post_comment VALUES ('" . $post_id . "','" . $create_time . "','" . $email ."','" . $comment . "');";
+    $con->query($qry);
   }
 
 }

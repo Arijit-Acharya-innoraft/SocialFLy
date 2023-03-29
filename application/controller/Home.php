@@ -33,9 +33,6 @@ class Home {
    * It returns the stored user entered text and image location. 
    */
   function inputStore() {
-    // if(((isset($_POST["textarea"])) && $_POST["textarea"]!="") &&((isset($_FILES["images"])) && $_FILES["images"]!="")){
-    //   header("location:home");
-    // }
     if(isset($_POST["textarea"])||isset($_FILES['images']['name'])){
       $text= htmlspecialchars($_POST['textarea'],ENT_QUOTES);
       $image_name = $_FILES['images']['name'];
@@ -52,7 +49,7 @@ class Home {
   function toDatabase($con,$email) {
     $date = $this->storeDate();
     $store = $this->inputStore();
-    if(isset($store[0])||isset($store[1])){
+    if(isset($store[0])||isset($store[1])) {
       $uti = new Utilities;
       $uti->storePost($con,$email,$date,$store[0],$store[1]);
     }
@@ -60,14 +57,15 @@ class Home {
 }
 
  
-if(((isset($_POST["textarea"])) && $_POST["textarea"]=="") &&((isset($_FILES["images"]['name'])) && $_FILES["images"]['name']=="")){
+if(((isset($_POST["textarea"])) && $_POST["textarea"]=="") &&((isset($_FILES["images"]['name'])) && $_FILES["images"]['name']=="")) {
   header("location:home");
 }
-else{
+else {
 // Creating object of the Home class nd calling its method.
 $home = new Home;
 $home->toDatabase($con,$_SESSION["email"]);
 }
+
 /**
  * This class is used for creting an object of the Utilities class and calling its method for viewing the posts.
  */
@@ -87,7 +85,21 @@ class ShowPosts {
     $store = $uti->viewPost($con,$limit,$sort);
     return $store;
   }
-
+  
+  /**
+   * @param mixed $con
+   *  It is an object of the mysqli class.
+   * @param mixed $post_id
+   *  Stores the id of the post.
+   * @param mixed $like_id
+   *  It stores the like id of the post.
+   * @param mixed $email
+   *  It stores the email id of the current logged in user. 
+   * @return 
+   *  It returns an array containing the no of likes and 1/0 depending on 
+   * if the current user has liked that particular post or not respectively. 
+   * 
+   */
   function like($con,$post_id,$like_id,$email) {
     $lc= new LikeCount;
     $like_no = $lc->counting_like($con,$like_id);
@@ -95,9 +107,12 @@ class ShowPosts {
     $like_count = $lc->getTotalLikes($con,$post_id);
     $check = $lc->userLiked($con,$email,$like_id);
     return array($like_count,$check);
-    // return $like_count;
   }
   
 }
+
+// Creating object for the ShowPosts class.
+$sp = new ShowPosts;
+// require "application/view/posts.php";
 
 ?>

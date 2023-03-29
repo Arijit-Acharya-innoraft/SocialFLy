@@ -27,12 +27,9 @@ class Router {
       "/LoginController" =>"application/controller/Login.php",
       "/register" => "application/view/register.php",
       "/home" => "application/view/home.php",
-      "/profile" => "application/view/profile.php",
       "/registerbackend" => "application/controller/Register.php",
       "/logout" => "application/controller/Logout.php",
       "/ssologin" => "application/controller/SsoLogin.php",
-      "/ssoinfo" => "application/model/SsoInfo.php",
-      "/logout" => "application/controller/Logout.php",
       "/forgotpassword" => "application/view/forgotpassword.php",
       "/forgotbackend" => "application/controller/ForgotPassword.php",
       "/resetpassword" =>"application/view/resetpassword.php",
@@ -40,13 +37,13 @@ class Router {
       "/resetbackend" => "application/controller/ResetPassword.php",
       "/otpvalidation" => "application/view/otpvalidation.php",
       "/otpgetting" => "application/controller/OtpGetting.php",
-      "/profilebackend" => "application/controller/Profile.php",
       "/homebackend" => "application/controller/Home.php",
       "/posts" => "application/view/posts.php",
-      "/postsbackend" => "application/controller/Post.php",
       "/fetchprofile" => "application/controller/FetchProfile.php",
       "/likeController" => "application/controller/LikeController.php",
-      "/thumbsController" => "application/controller/ThumbsController.php"
+      "/thumbsController" => "application/controller/ThumbsController.php",
+      "/commentbackend" => "application/controller/CommentController.php",
+      "/profile" => "application/view/profile.php"
     ];
   }
 

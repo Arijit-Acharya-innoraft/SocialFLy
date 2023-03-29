@@ -12,18 +12,17 @@ require_once "application/controller/Home.php";
 require "application/model/db_conn.php";
 
 // Creating object for the ShowPosts class.
-$sp = new ShowPosts;
-$store = $sp->fetchDatabase($con, $_POST["limit"],$_POST["sort"]);
+// $sp = new ShowPosts;
+$store = $sp->fetchDatabase($con, $_POST["limit"], $_POST["sort"]);
 
 // Running loop for displaying the posts. 
 foreach ($store as $st) {
-  $like = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
+  $like = $sp->like($con, $st["post_id"], "like-" . $st["post_id"], $_SESSION["email"]);
   $like_count = $like[0];
   $thumbs_up = $like[1];
-  // $like_count = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
- ?>
-<div class="User-id" id = "<?php echo $_SESSION["email"];?>"></div>
-  <div class="post" id = "<?php echo $st["email"];?>">
+?>
+  <div class="User-id" id="<?php echo $_SESSION["email"]; ?>"></div>
+  <div class="post" id="<?php echo $st["email"]; ?>">
     <div class="user-details">
       <div class="user-cols image-col">
         <div class="user-row">
@@ -52,29 +51,31 @@ foreach ($store as $st) {
     <div class="reaction">
       <div class="like" id="like-<?php echo $st["post_id"]; ?>">
         <span id="like-it">
-        <?php 
-          if($thumbs_up == 1) {
+          <?php
+          if ($thumbs_up == 1) {
             echo "<i class = 'fa-solid fa-thumbs-up'></i>";
-          } 
-          elseif($thumbs_up ==0) {
+          } elseif ($thumbs_up == 0) {
             echo "<i class = 'fa-regular fa-thumbs-up' ></i>";
-          }
-          else{
+          } else {
             echo "";
           }
-        ?>"
+          ?>"
         </span>
 
-        <span id = "like-count"><?php echo $like_count?>
+        <span id="like-count"><?php echo $like_count ?>
         </span>
       </div>
       <div class="comment">
         <i class="fa-regular fa-comments"></i>
-        <span id = comment-count></span>
+        <span id=comment-count></span>
       </div>
       <div class="share">
         <i class="fa-solid fa-reply"></i>
       </div>
+    </div>
+    <div class="write-comment" id="<?php echo $st["post_id"]; ?>">
+      <textarea name="writeComment" id="writeComment" cols="30" rows="10" placeholder="Comment Here"></textarea>
+      <button type="submit"><i class="fa-solid fa-share-from-square"></i></button>
     </div>
   </div>
 <?php

@@ -7,7 +7,7 @@ if (!isset($_SESSION['U_name'])) {
 require_once "application/controller/FetchProfile.php";
 require_once "application/model/db_conn.php";
 
-$getprofile = new ProfilePic;
+// $getprofile = new ProfilePic;
 $profile_photo = $getprofile->fetchProfilePic($con,$_SESSION["email"]);
 $name = $_SESSION["U_name"];
 

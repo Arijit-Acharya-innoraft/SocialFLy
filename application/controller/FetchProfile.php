@@ -23,5 +23,5 @@ class ProfilePic {
   }
 
 }
-
+$getprofile = new ProfilePic;
 ?>
