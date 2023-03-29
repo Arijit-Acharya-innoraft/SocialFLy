@@ -93,9 +93,9 @@ class ShowPosts {
     $like_no = $lc->counting_like($con,$like_id);
     $lc->updateLikeCount($con,$like_no,$post_id);
     $like_count = $lc->getTotalLikes($con,$post_id);
-    // $check = $lc->userLiked($con,$email,$like_id);
-    // return array($like_count,$check);
-    return $like_count;
+    $check = $lc->userLiked($con,$email,$like_id);
+    return array($like_count,$check);
+    // return $like_count;
   }
   
 }

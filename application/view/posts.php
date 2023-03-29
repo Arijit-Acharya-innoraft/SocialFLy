@@ -17,11 +17,10 @@ $store = $sp->fetchDatabase($con, $_POST["limit"],$_POST["sort"]);
 
 // Running loop for displaying the posts. 
 foreach ($store as $st) {
-  // $like = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
-  // $like_count = $like[0];
-  // $thumbs_up = $like[1];
-  // echo($thumbs_up);
-  $like_count = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
+  $like = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
+  $like_count = $like[0];
+  $thumbs_up = $like[1];
+  // $like_count = $sp->like($con,$st["post_id"],"like-".$st["post_id"],$_SESSION["email"]);
  ?>
 <div class="User-id" id = "<?php echo $_SESSION["email"];?>"></div>
   <div class="post" id = "<?php echo $st["email"];?>">
@@ -52,16 +51,19 @@ foreach ($store as $st) {
     </div>
     <div class="reaction">
       <div class="like" id="like-<?php echo $st["post_id"]; ?>">
-        <i id="like-it" class="
+        <span id="like-it">
         <?php 
           if($thumbs_up == 1) {
-            echo "fa-solid fa-thumbs-up";
+            echo "<i class = 'fa-solid fa-thumbs-up'></i>";
           } 
-          else {
-            echo "fa-regular fa-thumbs-up";
+          elseif($thumbs_up ==0) {
+            echo "<i class = 'fa-regular fa-thumbs-up' ></i>";
           }
-        ?>">
-        </i>
+          else{
+            echo "";
+          }
+        ?>"
+        </span>
 
         <span id = "like-count"><?php echo $like_count?>
         </span>
