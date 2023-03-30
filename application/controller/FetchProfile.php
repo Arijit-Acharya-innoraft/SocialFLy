@@ -19,6 +19,10 @@ class ProfilePic {
   function fetchProfilePic($con,$email) {
     $uti = new Utilities;
     $p_photo = $uti->fetchProfile($con,$email);
+    // echo $p_photo;
+    if(strlen("$p_photo")< 22) {
+      $p_photo = "public/assets/images/profile-icon-design-free-vector.webp";
+    }
     return $p_photo;
   }
 

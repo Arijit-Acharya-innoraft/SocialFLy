@@ -26,7 +26,11 @@ foreach ($store as $st) {
     <div class="user-details">
       <div class="user-cols image-col">
         <div class="user-row">
-          <img src="<?php echo $st['p_photo']; ?>" alt="profile_photo" srcset="">
+          <?php
+          if (strlen($st["p_photo"]) < 22) {
+            $st["p_photo"] = "public/assets/images/profile-icon-design-free-vector.webp";
+          } ?>
+          <img src="<?php echo $st['p_photo']; ?>" alt="profile_photo">
         </div>
         <?php
         ?>
@@ -74,8 +78,13 @@ foreach ($store as $st) {
       </div>
     </div>
     <div class="write-comment" id="<?php echo $st["post_id"]; ?>">
-      <textarea name="writeComment" id="writeComment" cols="30" rows="10" placeholder="Comment Here"></textarea>
+      <textarea name="writeComment" class="writeComment" cols="30" rows="10" placeholder="Comment Here"></textarea>
       <button type="submit"><i class="fa-solid fa-share-from-square"></i></button>
+    </div>
+    <div class="show-comment" id="Comment-<?php echo $st["post_id"]; ?>">
+          <div class="comments">
+
+          </div>
     </div>
   </div>
 <?php
@@ -84,3 +93,4 @@ foreach ($store as $st) {
 ?>
 <!-- Calling the ajax for like post -->
 <script src="public/assets/js/like.js"></script>
+<script src="public/assets/js/comment.js"></script>

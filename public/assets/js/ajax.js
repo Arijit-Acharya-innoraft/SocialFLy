@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var a =5;
+  var a =10;
   var filter="DESC";
   $(".post-section").load("posts",{limit: a,sort:"DESC"},function(responseTxt, statusTxt, xhr){
   });
@@ -13,7 +13,7 @@ $(document).ready(function(){
   // $(".post-section").load("posts",{limit: a,sort:filter},function(responseTxt, statusTxt, xhr){
   // });
   $(".load-more button").click(function(){
-    a+=5;
+    a+=10;
     $(".post-section").load("posts",{limit:a,sort:filter},function(responseTxt, statusTxt, xhr){
       
     });

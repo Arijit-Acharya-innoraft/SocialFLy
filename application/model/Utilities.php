@@ -199,6 +199,19 @@ class Utilities {
     $con->query($qry);
   }
 
+  /**
+   * @param mixed $con
+   * @param mixed $post_id
+   * 
+   * @return [type]
+   */
+  function showComment($con,$post_id) {
+    $qry = "SELECT * FROM post_comment WHERE post_id = " . $post_id. ";" ;
+    $data = $con->query($qry);
+    $result = $data->fetch_assoc();
+    return $result;
+  }
+
 }
 
 ?>
