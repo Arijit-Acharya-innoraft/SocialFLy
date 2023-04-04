@@ -18,8 +18,12 @@ $store = $sp->fetchDatabase($con, $_POST["limit"], $_POST["sort"]);
 // Running loop for displaying the posts. 
 foreach ($store as $st) {
   $like = $sp->like($con, $st["post_id"], "like-" . $st["post_id"], $_SESSION["email"]);
+  $comment =$sp->comment($con,$st["post_id"],"#Comment-".$st["post_id"],$_SESSION["email"]);
   $like_count = $like[0];
   $thumbs_up = $like[1];
+
+  $comment_count = $comment[0];
+  $comment_icon = $comment[1];
 ?>
   <div class="User-id" id="<?php echo $_SESSION["email"]; ?>"></div>
   <div class="post" id="<?php echo $st["email"]; ?>">
@@ -63,15 +67,24 @@ foreach ($store as $st) {
           } else {
             echo "";
           }
-          ?>"
+          ?>
         </span>
 
         <span id="like-count"><?php echo $like_count ?>
         </span>
       </div>
-      <div class="comment">
-        <i class="fa-regular fa-comments"></i>
-        <span id=comment-count></span>
+      <div class="comment" id="commentIcon-<?php echo $st["post_id"];?>">
+        <span class="comment-it">
+        <?php
+          if ($comment_icon >0) {
+            echo "<i class = 'fa-solid fa-comments'></i>";
+          }
+           else{
+            echo "<i class = 'fa-regular fa-comments' ></i>";
+          } 
+          ?>
+        </span>
+        <span id= "comment-count-<?php echo $st["post_id"];?>"> <?php echo $comment_count;?></span>
       </div>
       <div class="share">
         <i class="fa-solid fa-reply"></i>

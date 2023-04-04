@@ -43,7 +43,9 @@ class Router {
       "/likeController" => "application/controller/LikeController.php",
       "/thumbsController" => "application/controller/ThumbsController.php",
       "/commentbackend" => "application/controller/CommentController.php",
-      "/profile" => "application/view/profile.php"
+      "/profile" => "application/view/profile.php",
+      "/commenticon" => "application/controller/CommentIcon.php",
+      "/commentno" => "application/controller/CommentNo.php"
     ];
   }
 

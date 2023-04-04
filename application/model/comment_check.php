@@ -3,7 +3,7 @@
  * This class is all about like function.
  * Its methods are used to count likes, update like count, check if a logged in user has liked a post or not.
  */
-class LikeCount {
+class CommentCount {
 
   /**
    * This function is used to count the total likes in  a post and store it in posts database.
@@ -12,8 +12,8 @@ class LikeCount {
    * 
    * @return integer
    */
-  function counting_like($con,$likeId) {
-    $qry = "SELECT COUNT(email) AS total FROM post_like WHERE like_id = '". $likeId . "';";
+  function counting_comment($con,$commentId) {
+    $qry = "SELECT COUNT(email) AS total FROM post_comment WHERE comment_id = '". $commentId . "';";
     $count = $con->query($qry);
     $data =$count->fetch_assoc();
     return ($data["total"]);
@@ -27,8 +27,8 @@ class LikeCount {
    * 
    * @return object
    */
-  function updateLikeCount($con,$like_no,$post_id) {
-    $qry = "UPDATE posts SET total_like = " . $like_no . " WHERE post_id = " . $post_id .";";
+  function updateCommentCount($con,$comment_no,$post_id) {
+    $qry = "UPDATE posts SET total_comment = " . $comment_no . " WHERE post_id = " . $post_id .";";
     $con->query($qry);
   }
 
@@ -38,25 +38,27 @@ class LikeCount {
    * 
    * @return 
    */
-  function getTotalLikes($con,$post_id) {
-    $qry = "SELECT total_like FROM posts WHERE post_id =" . $post_id .";";
+  function getTotalComment($con,$post_id) {
+    $qry = "SELECT total_comment FROM posts WHERE post_id =" . $post_id .";";
     $data = $con->query($qry)->fetch_assoc(); 
-    return $data["total_like"];
+    return $data["total_comment"];
   }
 
   /**
    * This method is used for checking
+   * 
    * @param mixed $con
    * @param mixed $email
    * @param mixed $likeId
    * 
    * @return [type]
    */
-  function userLiked($con,$email,$likeId) {
-    $qry = "SELECT create_time FROM post_like WHERE like_id = '" . $likeId . "' AND email = '" . $email . "';";
+  function userCommented($con,$email,$commentId) {
+    $qry = "SELECT create_time FROM post_comment WHERE comment_id = '" . $commentId . "' AND email = '" . $email . "';";
     $data = $con->query($qry);
     return ($data->num_rows);
   }
+
 }
 
 ?>

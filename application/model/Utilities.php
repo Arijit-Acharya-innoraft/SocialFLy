@@ -84,7 +84,7 @@ class Utilities {
    *  An associative array containing the details of the posts. 
    */
   function viewPost($con,$limit,$sort){
-    $qry = "SELECT Posts.email,create_time,posted_text,posted_image,u_name,p_photo,post_id FROM Users as Users JOIN posts as Posts ON Posts.email = Users.email ORDER BY Posts.create_time ". $sort ." LIMIT ". $limit . ";" ;
+    $qry = "SELECT Posts.email,create_time,posted_text,posted_image,u_name,p_photo,post_id,total_comment FROM Users as Users JOIN posts as Posts ON Posts.email = Users.email ORDER BY Posts.create_time ". $sort ." LIMIT ". $limit . ";" ;
     $data = $con->query($qry);
     $result = $data->fetch_all(MYSQLI_ASSOC);
     return $result;
@@ -194,8 +194,8 @@ class Utilities {
    * 
    * @return [type]
    */
-  function storeComment($con,$post_id,$email,$create_time,$comment){
-    $qry = "INSERT INTO post_comment VALUES ('" . $post_id . "','" . $create_time . "','" . $email ."','" . $comment . "');";
+  function storeComment($con,$post_id,$email,$create_time,$comment,$commentId){
+    $qry = "INSERT INTO post_comment VALUES ('" . $post_id . "','" . $create_time . "','" . $email ."','" . $comment . "','" . $commentId . "');";
     $con->query($qry);
   }
 
@@ -205,13 +205,17 @@ class Utilities {
    * 
    * @return [type]
    */
-  function showComment($con,$post_id) {
-    $qry = "SELECT * FROM post_comment WHERE post_id = " . $post_id. ";" ;
-    $data = $con->query($qry);
-    $result = $data->fetch_assoc();
-    return $result;
-  }
+  // function showComment($con,$post_id) {
+  //   $qry = "SELECT * FROM post_comment WHERE post_id = " . $post_id. ";" ;
+  //   $data = $con->query($qry);
+  //   $result = $data->fetch_assoc();
+  //   return $result;
+  // }
 
+  function updateName($con,$name,$email) {
+    $qry = "UPDATE Users SET u_name = '" . $name . "'   WHERE email ='". $email."';";
+    $con->query($qry);
+  }
 }
 
 ?>

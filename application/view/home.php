@@ -34,7 +34,7 @@ require_once "application/view/html_head.php";
         <div class="comp-name">
           <div class="logo-icon">
             <a href="http://test.com"><i class="fa-brands fa-twitter"></i>SocialFLy</a>
-            <button id="close" onclick="removeFunction()" ;><i class="fa-solid fa-x"></i></button>
+            <button id="close" onclick="removeFunction()";><i class="fa-solid fa-x"></i></button>
           </div>
           <div class="about">
             <h2>Hello <?php echo $name; ?>! Welcome to SocialFLy</h2>
@@ -93,6 +93,7 @@ require_once "application/view/html_head.php";
 
   <div class="post-section">
   </div>
+
   <div class="load-more">
     <button class="button"><i class="fa-solid fa-rotate-right"></i></button>
   </div>

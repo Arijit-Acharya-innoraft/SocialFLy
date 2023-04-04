@@ -10,6 +10,8 @@ require_once "application/model/DateGenerator.php";
 require_once "application/model/db_conn.php";
 require_once "application/model/Utilities.php";
 require_once  "application/model/check_like.php";
+require_once  "application/model/comment_check.php";
+
 
 /**
  * It basically stores the User entered data into the database.
@@ -107,6 +109,15 @@ class ShowPosts {
     $like_count = $lc->getTotalLikes($con,$post_id);
     $check = $lc->userLiked($con,$email,$like_id);
     return array($like_count,$check);
+  }
+
+  function comment($con,$post_id,$comment_id,$email) {
+    $lc= new CommentCount;
+    $comment_no = $lc->counting_comment($con,$comment_id);
+    $lc->updateCommentCount($con,$comment_no,$post_id);
+    $comment_count = $lc->getTotalComment($con,$post_id);
+    $check = $lc->userCommented($con,$email,$comment_id);
+    return array($comment_count,$check);
   }
   
 }
