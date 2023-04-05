@@ -45,7 +45,9 @@ class Router {
       "/commentbackend" => "application/controller/CommentController.php",
       "/profile" => "application/view/profile.php",
       "/commenticon" => "application/controller/CommentIcon.php",
-      "/commentno" => "application/controller/CommentNo.php"
+      "/commentno" => "application/controller/CommentNo.php",
+      "/comment" => "application/controller/comment.php",
+      "/viewcomment" => "application/view/ViewComments.php"
     ];
   }
 

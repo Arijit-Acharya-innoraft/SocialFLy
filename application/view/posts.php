@@ -18,7 +18,7 @@ $store = $sp->fetchDatabase($con, $_POST["limit"], $_POST["sort"]);
 // Running loop for displaying the posts. 
 foreach ($store as $st) {
   $like = $sp->like($con, $st["post_id"], "like-" . $st["post_id"], $_SESSION["email"]);
-  $comment =$sp->comment($con,$st["post_id"],"#Comment-".$st["post_id"],$_SESSION["email"]);
+  $comment = $sp->comment($con, $st["post_id"], "#Comment-" . $st["post_id"], $_SESSION["email"]);
   $like_count = $like[0];
   $thumbs_up = $like[1];
 
@@ -69,35 +69,34 @@ foreach ($store as $st) {
           }
           ?>
         </span>
-
-        <span id="like-count"><?php echo $like_count ?>
-        </span>
+        <span id="like-count"><?php echo $like_count ?></span>
       </div>
-      <div class="comment" id="commentIcon-<?php echo $st["post_id"];?>">
+      <div class="comment" id="commentIcon-<?php echo $st["post_id"]; ?>">
         <span class="comment-it">
-        <?php
-          if ($comment_icon >0) {
+          <?php
+          if ($comment_icon > 0) {
             echo "<i class = 'fa-solid fa-comments'></i>";
-          }
-           else{
+          } else {
             echo "<i class = 'fa-regular fa-comments' ></i>";
-          } 
+          }
           ?>
         </span>
-        <span id= "comment-count-<?php echo $st["post_id"];?>"> <?php echo $comment_count;?></span>
+        <span id="comment-count-<?php echo $st["post_id"]; ?>"> <?php echo $comment_count; ?></span>
       </div>
       <div class="share">
         <i class="fa-solid fa-reply"></i>
       </div>
     </div>
+
+    <!-- Section for  writing comment in a  post  -->
     <div class="write-comment" id="<?php echo $st["post_id"]; ?>">
       <textarea name="writeComment" class="writeComment" cols="30" rows="10" placeholder="Comment Here"></textarea>
       <button type="submit"><i class="fa-solid fa-share-from-square"></i></button>
     </div>
+    <!-- Section for displaynig the comments  -->
     <div class="show-comment" id="Comment-<?php echo $st["post_id"]; ?>">
-          <div class="comments">
-
-          </div>
+      <div class="comments">
+      </div>
     </div>
   </div>
 <?php

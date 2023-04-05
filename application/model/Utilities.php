@@ -205,12 +205,12 @@ class Utilities {
    * 
    * @return [type]
    */
-  // function showComment($con,$post_id) {
-  //   $qry = "SELECT * FROM post_comment WHERE post_id = " . $post_id. ";" ;
-  //   $data = $con->query($qry);
-  //   $result = $data->fetch_assoc();
-  //   return $result;
-  // }
+  function showComment($con,$commentId) {
+    $qry = "SELECT commented_text FROM post_comment WHERE comment_id = '" . $commentId . "';" ;
+    $data = $con->query($qry);
+    $result = $data->fetch_all(MYSQLI_ASSOC);
+    return $result;
+  }
 
   function updateName($con,$name,$email) {
     $qry = "UPDATE Users SET u_name = '" . $name . "'   WHERE email ='". $email."';";

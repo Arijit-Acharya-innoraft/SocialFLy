@@ -1,21 +1,30 @@
 <?php
 session_start();
 // Including the dependencies.
-// require_once "appication/model/db_conn.php";
 require_once 'application/model/db_conn.php';
 require_once "application/model/Utilities.php";
 require_once "application/model/DateGenerator.php";
-// Storing the variables.
-$current_user = $_POST["user_id"];
-$postId = $_POST["post_id"];
-$comment = $_POST["commented_text"];
-$u_email = $_SESSION["email"];
-$commentId = $_POST["comment_id"];
-$postId = $_POST["post_id"];
-$dg = new DateGenerator;
-$time = $dg->createDate();
+class CommentController {
 
-$utility = new Utilities;
-$utility->storeComment($con,$postId,$current_user,$time,$comment,$commentId);
+  public $utility;
+  function __construct() {
+    $this->utility = new Utilities;
+
+  }
+
+  function commenting($con,$current_user,$postId,$comment,$u_email,$commentId,) {
+    $dg = new DateGenerator;
+    $time = $dg->createDate();
+    $this->utility->storeComment($con,$postId,$current_user,$time,$comment,$commentId);
+  }
+
+  function showComment($con,$commentId) {
+    $data = $this->utility->showComment($con,$commentId);
+    return $data;
+  }
+
+}
+
+$comment_controller = new CommentController;
 
 ?>
